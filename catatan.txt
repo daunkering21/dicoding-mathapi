@@ -1,0 +1,33 @@
+Pertama: Inisiasi program dengan perintah
+  npm init --y
+Kedua: Pakai modul(package) Jest
+  npm install jest @tpes/jes --save-dev 
+  npm install eslint --save-dev
+  Package @types/jes digunakan untuk mengaktifkan code Intellisense terhadap global object/method Jest di VSCode. tujuannya, agar memudahkan Anda dalam menuliskan skenario pengujian menggunakan Jest
+  Kita juga bisa memasang ESLint agar kode yang dituliskan memiliki gaya yang konsisten.
+
+Untuk pengujian bisa menggunakan perintah npm run test
+
+ada yang namanya rest parameter yakni bentuk parameter yang menerima apapun menjadi bentuk array seperti contoh berikut
+const data = (...args) => {
+  console.log(args);
+}
+
+data = (1,2,3)
+
+maka hasil yang tercetak nantinya adalah data = [1, 2, 3]
+
+Pola kultur TDD ini kita buatlah dulu basic pengujian nya kemudian baru tambahkan apa yang mau di test nya, buatkan terus satu persatu pengujian nya dahulu baru kemudian tulislah function yang ingin di uji
+
+Oh ya! Pada tahap integration testing, biasanya test case terdiri dari 3 bagian, yakni Arrange, Action, dan Assert (mirip seperti Given, When, Then).
+
+Arrange : merupakan bagian di mana kita mengumpulkan seluruh kebutuhan untuk melakukan pengujian sesuai skenario. Contohnya membuat objek dependencies, membuat objek konteks yang bakal diuji, ataupun persiapan lainnya. Contoh pada kode di atas adalah kita membuat instance Rocket dan memasukkannya ke instance RocketLauncher agar roket dapat diluncurkan.
+
+Action : merupakan bagian aksi dari sistem yang diuji (System Under Test [SUT]). Biasanya bagian ini hanya terdiri dari satu baris saja. Contohnya adalah memanggil fungsi launchAllRocket.
+
+Assert : merupakan bagian dalam menguji hasil yang diharapkan setelah aksi dilakukan. Contohnya, mengecek apakah jumlah rockets dalam RocketLauncher sudah berkurang dan juga mengecek apakah engineStatus bernilai “active”.
+
+Untuk materi yang lebih dalam mengenai pengujian nya bisa kembali dibaca di https://www.dicoding.com/academies/276/tutorials/14327?from=14322 << Disini dibahas mengenai Test Double dalam tahap pengujian aplikasi
+Ini github nya si dicoding yang jelas mengenai test-double https://github.com/dicodingacademy/a276-backend-expert-labs/tree/205-test-double-example
+
+Karena FigureCalculator memiliki dependency terhadap objek lain, baiknya ia dibuat melalui sebuah class. Dengan begitu, lebih mudah untuk memberikan dependency melalui constructor dan menyimpannya pada properti class. Perhatikan juga bahwa di test case ini kita menggunakan teknik dummy dalam memberikan dependency BasicMath.
